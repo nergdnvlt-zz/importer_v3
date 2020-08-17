@@ -6,8 +6,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 
 require 'database_cleaner'
+
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-DatabaseCleaner.strategy = :truncation
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -16,18 +16,23 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-  DatabaseCleaner.strategy = :truncation
 
-  RSpec.configure do |c|
-    c.before(:each) do
-      DatabaseCleaner.clean
-    end
+  config.before(:suite) do
+    Rails.application.load_seed
 
-    c.after(:each) do
-      DatabaseCleaner.clean
-    end
-    c.include Capybara::DSL
+    DatabaseCleaner.strategy = :truncation, { :except => %w[zip_codes] }
+    DatabaseCleaner.clean_with(:truncation, { :except => %w[zip_codes] })
   end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  config.include Capybara::DSL
 end
 
 Shoulda::Matchers.configure do |config|

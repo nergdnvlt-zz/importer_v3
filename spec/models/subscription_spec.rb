@@ -18,10 +18,20 @@ RSpec.describe Subscription, type: :model do
     it { should validate_presence_of(:interval) }
     it { should validate_presence_of(:interval_length) }
     it { should validate_presence_of(:next_charge_date) }
-    it { should validate_presence_of(:manual_renew) }
     it { should validate_presence_of(:site_id) }
   end
 
-  describe 'create validations' do
+  describe 'zip validations' do
+    it 'validates a 3 digit zip that exists' do
+      sub = create(:subscription, country: "US", postal_code: "979")
+
+      expect(sub.postal_code).to eq("00979")
+    end
+    
+    it 'does not validates a 3 digit zip that does not exist' do
+      sub = create(:subscription, country: "US", postal_code: "881")
+
+      expect(sub).to_not be_valid
+    end
   end
 end
