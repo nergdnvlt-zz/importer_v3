@@ -28,4 +28,8 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.after(:suite) do
+    DatabaseCleaner.clean_with(:truncation, { only: %w[zip_codes]})
+  end
 end

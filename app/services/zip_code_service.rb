@@ -10,7 +10,6 @@ class ZipCodeService
     private
   
     def initialize(postal_code)
-      binding.pry
       @postal_code = postal_code
       @countries = %w[us pr as gu mp vi um]
     end
@@ -18,7 +17,6 @@ class ZipCodeService
     def find_zip_and_country
       @countries.each do |country|
         status = Faraday.get("http://api.zippopotam.us/#{country}/#{@postal_code}").status
-        binding.pry
         return status if status == 200
       end
     end
