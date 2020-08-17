@@ -9,6 +9,6 @@ class Subscription < ApplicationRecord
     
     validates_inclusion_of  :manual_renew, in: [true, false]
 
-    before_create   :format_zip,
-                    :validate_zip
+    before_validation   :format_zip,
+                        :validate_zip
 end
