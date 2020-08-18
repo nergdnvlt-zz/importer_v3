@@ -15,9 +15,11 @@ class ZipCodeService
     end
   
     def find_zip_and_country
+      status = 404
       @countries.each do |country|
         status = Faraday.get("http://api.zippopotam.us/#{country}/#{@postal_code}").status
         return status if status == 200
       end
+      status
     end
 end
