@@ -4,8 +4,7 @@ class ZipCodeService
     end
   
     def run
-      a = create_zip
-      binding.pry
+      create_zip
     end
   
     private
@@ -13,6 +12,7 @@ class ZipCodeService
     def initialize(postal_code)
       @postal_code = postal_code
       @countries = %w[us pr as gu mp vi um]
+      @conn
     end
 
     # Create ZipCode if new
@@ -29,19 +29,13 @@ class ZipCodeService
     # Check if zip is in API
     def find_zip_and_country
       @countries.map do |country|
-        eval_territory(country)
+        return [ @conn.status, country ] if conn(country).status == 200
+        @conn.status
       end.uniq
-    end
-
-    # Eval for each Terrritory
-    def eval_territory(country)
-      return [ @conn.status, country ] if conn(country).status == 200
-      @conn.status
     end
 
     # API Request
     def conn(country)
-      @conn ||= Faraday.get("http://api.zippopotam.us/#{country}/#{@postal_code}")
-      binding.pry
+      @conn = Faraday.get("http://api.zippopotam.us/#{country}/#{@postal_code}")
     end
 end
