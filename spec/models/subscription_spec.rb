@@ -30,8 +30,10 @@ RSpec.describe Subscription, type: :model do
     end
     
     it 'does not validate a 3 digit zip that does not exist' do
-      sub = build(:subscription, country: "US", postal_code: "881")
+      zip_code = "881"
+      sub = build(:subscription, country: "US", postal_code: zip_code)
     
+      expect(ZipCode.find_by(postal_code: "00#{zip_code}")).to be_nil
       expect(sub).to_not be_valid
     end
 
