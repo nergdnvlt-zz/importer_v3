@@ -71,5 +71,54 @@ RSpec.describe Subscription, type: :model do
       expect(sub).to be_a(Subscription)
       expect(sub.postal_code).to eq("04110")
     end
+
+    it 'does not validate a 4 digit zip that does not exist in database but does in API' do
+      zip_code = "2918"
+      
+      ZipCode.where(postal_code: "0#{zip_code}").delete_all
+
+      sub = create(:subscription, country: "US", postal_code: zip_code)
+
+      zip = ZipCode.find_by(postal_code: "0#{zip_code}")
+
+      expect(zip).to be_a(ZipCode)
+      expect(zip.postal_code).to eq("0#{zip_code}")
+      
+      expect(sub).to be_a(Subscription)
+      expect(sub.postal_code).to eq("0#{zip_code}")
+    end
+
+    it 'does not validate a 4 digit zip that does not exist' do
+      zip_code = "5011"
+      
+      ZipCode.where(postal_code: "0#{zip_code}").delete_all
+
+      sub = build(:subscription, country: "US", postal_code: zip_code)
+      
+      expect(sub).to_not be_valid
+    end
+
+    it 'removes a suffix from the postal code' do
+      zip_code = "80829"
+      sub = create(:subscription, country: "US", postal_code: "#{zip_code}-2309")
+      
+      expect(sub).to be_a(Subscription)
+      expect(sub.postal_code).to eq(zip_code)
+    end
+
+    it 'invalidates all other zips longer than 5 digits' do
+      zip_code = "80829"
+      sub = build(:subscription, country: "US", postal_code: "#{zip_code}2309")
+      
+      expect(sub).to_not be_valid
+    end
+  end
+
+  describe 'date formatting' do
+    it 'formats the next charge date correctly' do
+      sub = create(:subscription)
+
+      expect(sub).to be_a(Subscription)
+    end 
   end
 end
