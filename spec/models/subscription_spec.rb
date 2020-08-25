@@ -110,5 +110,18 @@ RSpec.describe Subscription, type: :model do
     
       expect(sub).to be_a(Subscription)
     end
+
+    # OTHER DATE VALIDATIONS - FORMAT & POSTGRESQL
+    it 'will allow slashes for date' do
+      sub = create(:subscription, next_charge_date: "2020/08/27")
+    
+      expect(sub.next_charge_date).to eq("2020-08-27")
+    end
+
+    it 'will not allow different date order for date' do
+      sub = build(:subscription, next_charge_date: "08/27/2020")
+    
+      expect(sub).to_not be_valid
+    end
   end
 end
