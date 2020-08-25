@@ -22,10 +22,12 @@ RSpec.describe AmericanSubscription, type: :model do
   end
 
   describe 'positive zip validations' do
-    it 'tests creation normally' do
-      sub = create(:american_subscription)
-
+    it 'takes a normal zip just fine' do
+      zip_code = "80829"
+      sub = create(:american_subscription, postal_code: zip_code)
+      
       expect(sub).to be_a(AmericanSubscription)
+      expect(sub.postal_code).to eq(zip_code)
     end
 
     it 'validates a 3 digit zip that exists' do
@@ -61,14 +63,6 @@ RSpec.describe AmericanSubscription, type: :model do
     it 'removes a suffix from the postal code' do
       zip_code = "80829"
       sub = create(:american_subscription, postal_code: "#{zip_code}-2309")
-      
-      expect(sub).to be_a(AmericanSubscription)
-      expect(sub.postal_code).to eq(zip_code)
-    end
-
-    it 'also takes a normal zip just fine' do
-      zip_code = "80829"
-      sub = create(:american_subscription, postal_code: zip_code)
       
       expect(sub).to be_a(AmericanSubscription)
       expect(sub.postal_code).to eq(zip_code)
