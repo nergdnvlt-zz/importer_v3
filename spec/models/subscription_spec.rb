@@ -19,4 +19,96 @@ RSpec.describe Subscription, type: :model do
     it { should validate_presence_of(:next_charge_date) }
     it { should validate_presence_of(:site_id) }
   end
+
+  describe 'date getter validations' do
+
+    # NEXT CHARGE DATE VALIDATIONS
+    it 'supplies the right date format for next charge date' do
+      sub = create(:subscription, next_charge_date: "2020-08-27")
+    
+      expect(sub.next_charge_date).to eq("2020-08-27")
+    end
+
+    it 'creates a random date for next_charge_date' do
+      sub = create(:subscription)
+    
+      expect(sub).to be_a(Subscription)
+    end
+
+    # TRIAL END DATE VALIDATIONS
+    it 'supplies the right date format for trial end date' do
+      sub = create(:subscription, trial_end_date: "2020-08-27")
+    
+      expect(sub.trial_end_date).to eq("2020-08-27")
+    end
+
+    it 'doesnt break if trial end date is nil' do
+      sub = create(:subscription, trial_end_date: nil)
+    
+      expect(sub.trial_end_date).nil?
+    end
+
+    it 'doesnt break if trial end date is blank' do
+      sub = create(:subscription, trial_end_date: "")
+    
+      expect(sub.trial_end_date).nil?
+    end
+
+    it 'creates a random date for trial end' do
+      sub = create(:subscription)
+    
+      expect(sub).to be_a(Subscription)
+    end
+
+
+    # BEGIN DATE VALIDATIONS
+    it 'supplies the right date format for begin date' do
+      sub = create(:subscription, begin_date: "2020-08-27")
+    
+      expect(sub.begin_date).to eq("2020-08-27")
+    end
+
+    it 'doesnt break if begin date is nil' do
+      sub = create(:subscription, begin_date: nil)
+    
+      expect(sub.begin_date).nil?
+    end
+
+    it 'doesnt break if begin date is blank' do
+      sub = create(:subscription, begin_date: "")
+    
+      expect(sub.begin_date).nil?
+    end
+
+    it 'creates a random date for begin date' do
+      sub = create(:subscription)
+    
+      expect(sub).to be_a(Subscription)
+    end
+
+    # END DATE VALIDATIONS
+    it 'supplies the right date format for end date' do
+      sub = create(:subscription, end_date: "2020-08-27")
+    
+      expect(sub.end_date).to eq("2020-08-27")
+    end
+
+    it 'doesnt break if end date is nil' do
+      sub = create(:subscription, end_date: nil)
+    
+      expect(sub.end_date).nil?
+    end
+
+    it 'doesnt break if end date is blank' do
+      sub = create(:subscription, end_date: "")
+    
+      expect(sub.end_date).nil?
+    end
+
+    it 'creates a random date for end date' do
+      sub = create(:subscription)
+    
+      expect(sub).to be_a(Subscription)
+    end
+  end
 end
