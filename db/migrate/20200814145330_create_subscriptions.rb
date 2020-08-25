@@ -22,10 +22,10 @@ class CreateSubscriptions < ActiveRecord::Migration[6.0]
       t.float :list_price
       t.string :interval
       t.integer :interval_length
-      t.string :begin_date
-      t.string :trial_end_date
-      t.string :next_charge_date
-      t.string :end_date
+      t.datetime :begin_date
+      t.datetime :trial_end_date
+      t.datetime :next_charge_date
+      t.datetime :end_date
       t.integer :interval_count
       t.string :tax_exemption
       t.boolean :manual_renew

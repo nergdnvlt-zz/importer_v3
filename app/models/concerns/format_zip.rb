@@ -1,12 +1,19 @@
 module FormatZip
     def format_zip
+        binding.pry
         return eval_us_zip if country == "US"
+
+        self.postal_code = postal_code
     end
 
     def eval_us_zip
-        return postal_code if postal_code == nil
+        return postal_code if postal_code.nil?
+
+        binding.pry
         
-        if postal_code.length == 3
+        if postal_code.length == 5
+            self.postal_code = postal_code
+        elsif postal_code.length == 3
             self.postal_code = "00" + postal_code
         elsif postal_code.length == 4
             self.postal_code = "0" + postal_code
