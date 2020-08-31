@@ -20,42 +20,49 @@ RSpec.describe Subscription, type: :model do
     it { should validate_presence_of(:site_id) }
   end
 
+  describe 'Relationships' do
+    it {should belong_to :company }
+  end
+
   describe 'date getter validations' do
+    before(:each) do
+      @company = create(:company)
+    end
 
     # NEXT CHARGE DATE VALIDATIONS
     it 'supplies the right date format for next charge date' do
-      sub = create(:subscription, next_charge_date: "2020-08-27")
+      sub = create(:subscription, next_charge_date: "2020-08-27", company: @company)
     
       expect(sub.next_charge_date).to eq("2020-08-27")
     end
 
     it 'creates a random date for next_charge_date' do
-      sub = create(:subscription)
+      sub = create(:subscription, company: @company)
     
       expect(sub).to be_a(Subscription)
     end
 
     # TRIAL END DATE VALIDATIONS
     it 'supplies the right date format for trial end date' do
-      sub = create(:subscription, trial_end_date: "2020-08-27")
+      sub = create(:subscription, trial_end_date: "2020-08-27", company: @company)
     
       expect(sub.trial_end_date).to eq("2020-08-27")
     end
 
     it 'doesnt break if trial end date is nil' do
-      sub = create(:subscription, trial_end_date: nil)
+      sub = create(:subscription, trial_end_date: nil, company: @company)
     
       expect(sub.trial_end_date).nil?
     end
 
     it 'doesnt break if trial end date is blank' do
-      sub = create(:subscription, trial_end_date: "")
+      sub = create(:subscription, trial_end_date: "", company: @company)
     
       expect(sub.trial_end_date).nil?
     end
 
     it 'creates a random date for trial end' do
-      sub = create(:subscription)
+      sub = create(:subscription, company: @company)
     
       expect(sub).to be_a(Subscription)
     end
@@ -63,63 +70,63 @@ RSpec.describe Subscription, type: :model do
 
     # BEGIN DATE VALIDATIONS
     it 'supplies the right date format for begin date' do
-      sub = create(:subscription, begin_date: "2020-08-27")
+      sub = create(:subscription, begin_date: "2020-08-27", company: @company)
     
       expect(sub.begin_date).to eq("2020-08-27")
     end
 
     it 'doesnt break if begin date is nil' do
-      sub = create(:subscription, begin_date: nil)
+      sub = create(:subscription, begin_date: nil, company: @company)
     
       expect(sub.begin_date).nil?
     end
 
     it 'doesnt break if begin date is blank' do
-      sub = create(:subscription, begin_date: "")
+      sub = create(:subscription, begin_date: "", company: @company)
     
       expect(sub.begin_date).nil?
     end
 
     it 'creates a random date for begin date' do
-      sub = create(:subscription)
+      sub = create(:subscription, company: @company)
     
       expect(sub).to be_a(Subscription)
     end
 
     # END DATE VALIDATIONS
     it 'supplies the right date format for end date' do
-      sub = create(:subscription, end_date: "2020-08-27")
+      sub = create(:subscription, end_date: "2020-08-27", company: @company)
     
       expect(sub.end_date).to eq("2020-08-27")
     end
 
     it 'doesnt break if end date is nil' do
-      sub = create(:subscription, end_date: nil)
+      sub = create(:subscription, end_date: nil, company: @company)
     
       expect(sub.end_date).nil?
     end
 
     it 'doesnt break if end date is blank' do
-      sub = create(:subscription, end_date: "")
+      sub = create(:subscription, end_date: "", company: @company)
     
       expect(sub.end_date).nil?
     end
 
     it 'creates a random date for end date' do
-      sub = create(:subscription)
+      sub = create(:subscription, company: @company)
     
       expect(sub).to be_a(Subscription)
     end
 
     # OTHER DATE VALIDATIONS - FORMAT & POSTGRESQL
     it 'will allow slashes for date' do
-      sub = create(:subscription, next_charge_date: "2020/08/27")
+      sub = create(:subscription, next_charge_date: "2020/08/27", company: @company)
     
       expect(sub.next_charge_date).to eq("2020-08-27")
     end
 
     it 'will not allow different date order for date' do
-      sub = build(:subscription, next_charge_date: "08/27/2020")
+      sub = build(:subscription, next_charge_date: "08/27/2020", company: @company)
     
       expect(sub).to_not be_valid
     end

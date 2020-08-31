@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_164201) do
+ActiveRecord::Schema.define(version: 2020_08_25_215750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "site_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "subscriptions", force: :cascade do |t|
     t.string "reference_id"
@@ -47,6 +54,8 @@ ActiveRecord::Schema.define(version: 2020_08_15_164201) do
     t.string "site_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_id", null: false
+    t.index ["company_id"], name: "index_subscriptions_on_company_id"
   end
 
   create_table "zip_codes", force: :cascade do |t|
@@ -54,4 +63,5 @@ ActiveRecord::Schema.define(version: 2020_08_15_164201) do
     t.string "state"
   end
 
+  add_foreign_key "subscriptions", "companies"
 end

@@ -22,16 +22,20 @@ RSpec.describe AmericanSubscription, type: :model do
   end
 
   describe 'positive zip validations' do
+    before(:each) do
+      @company = create(:company)
+    end
+
     it 'takes a normal zip just fine' do
       zip_code = "80829"
-      sub = create(:american_subscription, postal_code: zip_code)
+      sub = create(:american_subscription, postal_code: zip_code, company: @company)
       
       expect(sub).to be_a(AmericanSubscription)
       expect(sub.postal_code).to eq(zip_code)
     end
 
     it 'validates a 3 digit zip that exists' do
-      sub = create(:american_subscription, postal_code: "979")
+      sub = create(:american_subscription, postal_code: "979", company: @company)
 
       expect(sub).to be_a(AmericanSubscription)
       expect(sub.postal_code).to eq("00979")
@@ -42,7 +46,7 @@ RSpec.describe AmericanSubscription, type: :model do
       
       ZipCode.where(postal_code: "00#{zip_code}").delete_all
       
-      sub = create(:american_subscription, postal_code: zip_code)
+      sub = create(:american_subscription, postal_code: zip_code, company: @company)
 
       zip = ZipCode.find_by(postal_code: "00#{zip_code}")
 
@@ -54,7 +58,7 @@ RSpec.describe AmericanSubscription, type: :model do
     end
 
     it 'validates a 4 digit zip that exists' do
-      sub = create(:american_subscription, postal_code: "4110")
+      sub = create(:american_subscription, postal_code: "4110", company: @company)
 
       expect(sub).to be_a(AmericanSubscription)
       expect(sub.postal_code).to eq("04110")
@@ -62,7 +66,7 @@ RSpec.describe AmericanSubscription, type: :model do
 
     it 'removes a suffix from the postal code' do
       zip_code = "80829"
-      sub = create(:american_subscription, postal_code: "#{zip_code}-2309")
+      sub = create(:american_subscription, postal_code: "#{zip_code}-2309", company: @company)
       
       expect(sub).to be_a(AmericanSubscription)
       expect(sub.postal_code).to eq(zip_code)
@@ -70,22 +74,26 @@ RSpec.describe AmericanSubscription, type: :model do
   end
   
   describe 'negative zip validations' do
+    before(:each) do
+      @company = create(:company)
+    end
+
     it 'does not validate a 3 digit zip that does not exist' do
       zip_code = "881"
-      sub = build(:american_subscription, postal_code: zip_code)
+      sub = build(:american_subscription, postal_code: zip_code, company: @company)
       
       expect(ZipCode.find_by(postal_code: "00#{zip_code}")).to be_nil
       expect(sub).to_not be_valid
     end
 
     it 'does not validate a nil zip' do
-      sub = build(:american_subscription, postal_code: nil)
+      sub = build(:american_subscription, postal_code: nil, company: @company)
   
       expect(sub).to_not be_valid
     end
 
     it 'does not validate a blank zip' do
-      sub = build(:american_subscription, postal_code: "")
+      sub = build(:american_subscription, postal_code: "", company: @company)
   
       expect(sub).to_not be_valid
     end
@@ -95,7 +103,7 @@ RSpec.describe AmericanSubscription, type: :model do
         
       ZipCode.where(postal_code: "0#{zip_code}").delete_all
   
-      sub = create(:american_subscription, postal_code: zip_code)
+      sub = create(:american_subscription, postal_code: zip_code, company: @company)
   
       zip = ZipCode.find_by(postal_code: "0#{zip_code}")
   
@@ -111,14 +119,14 @@ RSpec.describe AmericanSubscription, type: :model do
         
       ZipCode.where(postal_code: "0#{zip_code}").delete_all
   
-      sub = build(:american_subscription, postal_code: zip_code)
+      sub = build(:american_subscription, postal_code: zip_code, company: @company)
         
       expect(sub).to_not be_valid
     end
 
     it 'invalidates all other zips longer than 5 digits' do
       zip_code = "80829"
-      sub = build(:american_subscription, postal_code: "#{zip_code}2309")
+      sub = build(:american_subscription, postal_code: "#{zip_code}2309", company: @company)
         
       expect(sub).to_not be_valid
     end
