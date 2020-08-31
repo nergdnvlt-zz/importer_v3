@@ -6,12 +6,12 @@ FactoryBot.define do
     email { Faker::Internet.safe_email }
     company { Faker::Company.name }
     phone { Faker::PhoneNumber.phone_number }
-    language { "en" }
+    language { 'en' }
     country { Faker::Address.country_code }
-    address_1 { "MyString" }
-    address_2 { "MyString" }
-    city { "MyString" }
-    region { "MyString" }
+    address_1 { 'MyString' }
+    address_2 { 'MyString' }
+    city { 'MyString' }
+    region { 'MyString' }
     postal_code { Faker::Address.zip }
     live { true }
     account_id { Faker::Code.asin }
@@ -19,10 +19,10 @@ FactoryBot.define do
     quantity { 1 }
     currency { Faker::Currency.code }
     list_price { Faker::Commerce.price }
-    interval { "Month" }
+    interval { 'Month' }
     interval_length { 1 }
-    begin_date { "MyString" }
-    trial_end_date { "MyString" }
+    begin_date { Faker::Date.forward(days: 1) }
+    trial_end_date { Faker::Date.forward(days: 15) }
     next_charge_date { Faker::Date.forward(days: 23) }
     end_date { "" }
     interval_count { 0 }
