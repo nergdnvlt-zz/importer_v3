@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-describe 'Company' do
-    
+describe 'Subscriptions' do
+
 end
