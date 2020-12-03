@@ -78,7 +78,7 @@ class SubCreationService
       currency: @sub[:currency],
       list_price: fix_list_price(@sub[:listprice]),
       interval: @sub[:interval],
-      interval_length: @sub[:interval_length],
+      interval_length: @sub[:intervallength],
       begin_date: @sub[:begindate],
       next_charge_date: @sub[:nextchargedate],
       end_date: @sub[:enddate],
