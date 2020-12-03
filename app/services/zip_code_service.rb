@@ -4,7 +4,7 @@ class ZipCodeService
   end
 
   def run
-    create_zip
+    find_zip_and_country
   end
 
   private
@@ -16,19 +16,20 @@ class ZipCodeService
   end
 
   # Create ZipCode if new
-  def create_zip
-    if find_zip_and_country[0] == 200
-      ZipCode.create(
-        postal_code: @postal_code,
-        state: find_zip_and_country[1]
-      )
-    end
-    find_zip_and_country[0]
-  end
+  # def create_zip
+  #   if find_zip_and_country[0] == 200
+  #     ZipCode.create(
+  #       postal_code: @postal_code,
+  #       state: find_zip_and_country[1]
+  #     )
+  #   end
+  #   find_zip_and_country[0]
+  # end
 
   # Check if zip is in API
   def find_zip_and_country
     @countries.map do |country|
+      puts conn(country) if conn(country).status == 200
       return [ @conn.status, country ] if conn(country).status == 200
       @conn.status
     end.uniq

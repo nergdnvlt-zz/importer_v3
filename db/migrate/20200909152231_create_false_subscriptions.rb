@@ -1,6 +1,6 @@
-class CreateSubscriptions < ActiveRecord::Migration[6.0]
+class CreateFalseSubscriptions < ActiveRecord::Migration[6.0]
   def change
-    create_table :subscriptions do |t|
+    create_table :false_subscriptions do |t|
       t.string :reference_id
       t.string :first
       t.string :last
@@ -14,22 +14,23 @@ class CreateSubscriptions < ActiveRecord::Migration[6.0]
       t.string :city
       t.string :region
       t.string :postal_code
-      t.boolean :live
+      t.string :live
       t.string :account_id
       t.string :product_path
-      t.integer :quantity
+      t.string :quantity
       t.string :currency
-      t.float :list_price
+      t.string :list_price
       t.string :interval
-      t.integer :interval_length
-      t.datetime :begin_date
-      t.datetime :trial_end_date
-      t.datetime :next_charge_date
-      t.datetime :end_date
-      t.integer :interval_count
+      t.string :interval_length
+      t.string :begin_date
+      t.string :trial_end_date
+      t.string :next_charge_date
+      t.string :end_date
+      t.string :interval_count
       t.string :tax_exemption
-      t.boolean :manual_renew
+      t.string :manual_renew
       t.string :site_id
+      t.references :company, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faraday'
+gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails'
+gem 'csv'
 
 
 group :development, :test do
