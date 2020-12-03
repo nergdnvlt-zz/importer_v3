@@ -1,6 +1,6 @@
-class CreateFalseSubscriptions < ActiveRecord::Migration[6.0]
+class CreateInvalidSubscriptions < ActiveRecord::Migration[6.0]
   def change
-    create_table :false_subscriptions do |t|
+    create_table :invalid_subscriptions do |t|
       t.string :reference_id
       t.string :first
       t.string :last
@@ -28,8 +28,6 @@ class CreateFalseSubscriptions < ActiveRecord::Migration[6.0]
       t.string :end_date
       t.string :interval_count
       t.string :tax_exemption
-      t.string :manual_renew
-      t.string :site_id
       t.references :company, null: false, foreign_key: true
 
       t.timestamps

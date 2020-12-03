@@ -1,0 +1,2 @@
+module InvalidSubscriptionsHelper
+end

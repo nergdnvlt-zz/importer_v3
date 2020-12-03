@@ -27,7 +27,5 @@ FactoryBot.define do
     end_date { '' }
     interval_count { 0 }
     tax_exemption { '' }
-    manual_renew { false }
-    site_id { Faker::Company.ein }
   end
 end

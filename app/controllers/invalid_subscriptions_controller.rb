@@ -1,8 +1,8 @@
-class FalseSubscriptionsController < ApplicationController
+class InvalidSubscriptionsController < ApplicationController
   before_action :set_company, only: %i[index destroy]
   
   def index
-    @subs = @company.false_subscriptions
+    @subs = @company.invalid_subscriptions
     respond_to do |format|
       format.html
       format.csv do
@@ -13,10 +13,10 @@ class FalseSubscriptionsController < ApplicationController
   end
   
   def destroy
-    if @company.subscriptions.destroy_all
+    if @company.invalid_subscriptions.destroy_all
       redirect_to company_path(@company)
     else
-      redirect_to company_subscriptions_path(@company)
+      redirect_to company_invalid_subscriptions_path(@company)
     end
   end
 

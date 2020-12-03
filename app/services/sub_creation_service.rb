@@ -17,16 +17,16 @@ class SubCreationService
       # Error handling and Zip Validation
       if !@sub[:postalcode].nil? && @sub[:postalcode].length == 5 && @zip_list.real?(@sub[:postalcode])
         if !create_american_sub
-          create_false_sub
+          create_invalid_sub
         end  
       else
-        create_false_sub
+        create_invalid_sub
       end
     
     # Non US Subs
     else
       if !create_sub
-        create_false_sub
+        create_invalid_sub
       end
     end
   end
@@ -58,14 +58,13 @@ class SubCreationService
       begin_date: @sub[:begindate],
       next_charge_date: @sub[:nextchargedate],
       end_date: @sub[:enddate],
-      trial_end_date: @sub[:trialenddate],
-      manual_renew: true
+      trial_end_date: @sub[:trialenddate]
     )
     am_sub.save
   end
 
-  def create_false_sub
-    false_sub = @company.false_subscriptions.new(
+  def create_invalid_sub
+    invalid_sub = @company.invalid_subscriptions.new(
       reference_id: @sub[:referenceid],
       first: @sub[:first],
       last: @sub[:last],
@@ -83,10 +82,9 @@ class SubCreationService
       begin_date: @sub[:begindate],
       next_charge_date: @sub[:nextchargedate],
       end_date: @sub[:enddate],
-      trial_end_date: @sub[:trialenddate],
-      manual_renew: 'TRUE'
+      trial_end_date: @sub[:trialenddate]
     )
-    false_sub.save
+    invalid_sub.save
   end
 
   def create_sub
@@ -108,8 +106,7 @@ class SubCreationService
       begin_date: @sub[:begindate],
       next_charge_date: @sub[:nextchargedate],
       end_date: @sub[:enddate],
-      trial_end_date: @sub[:trialenddate],
-      manual_renew: true
+      trial_end_date: @sub[:trialenddate]
     )
     sub.save
   end

@@ -18,7 +18,6 @@ RSpec.describe AmericanSubscription, type: :model do
     it { should validate_presence_of(:interval) }
     it { should validate_presence_of(:interval_length) }
     it { should validate_presence_of(:next_charge_date) }
-    it { should validate_presence_of(:site_id) }
   end
 
   describe 'positive zip validations' do

@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     end
 
 
-    resources :false_subscriptions
-    post 'false_subscriptions/download', to: 'false_subscriptions#download'
-    resources :false_subscriptions do
+    resources :invalid_subscriptions
+    post 'invalid_subscriptions/download', to: 'invalid_subscriptions#download'
+    resources :invalid_subscriptions do
       collection do
         delete 'delete_all'
       end
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get '/:company', to: 'companies#show'
   post 'companies/upload', to: 'companies#upload'
-  delete '/company/:company/subscriptions', to: 'subscriptions#destroy'
+  # delete '/company/:company/subscriptions', to: 'subscriptions#destroy'
 
   post '/', to: 'sessions#create'
 end

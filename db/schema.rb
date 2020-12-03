@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_152231) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "false_subscriptions", force: :cascade do |t|
+  create_table "invalid_subscriptions", force: :cascade do |t|
     t.string "reference_id"
     t.string "first"
     t.string "last"
@@ -49,12 +49,10 @@ ActiveRecord::Schema.define(version: 2020_09_09_152231) do
     t.string "end_date"
     t.string "interval_count"
     t.string "tax_exemption"
-    t.string "manual_renew"
-    t.string "site_id"
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_id"], name: "index_false_subscriptions_on_company_id"
+    t.index ["company_id"], name: "index_invalid_subscriptions_on_company_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -85,19 +83,12 @@ ActiveRecord::Schema.define(version: 2020_09_09_152231) do
     t.datetime "end_date"
     t.integer "interval_count"
     t.string "tax_exemption"
-    t.boolean "manual_renew"
-    t.string "site_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "company_id", null: false
     t.index ["company_id"], name: "index_subscriptions_on_company_id"
   end
 
-  create_table "zip_codes", force: :cascade do |t|
-    t.string "postal_code"
-    t.string "state"
-  end
-
-  add_foreign_key "false_subscriptions", "companies"
+  add_foreign_key "invalid_subscriptions", "companies"
   add_foreign_key "subscriptions", "companies"
 end

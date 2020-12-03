@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :false_subscription do
+  factory :invalid_subscription do
     reference_id { "MyString" }
     first { "MyString" }
     last { "MyString" }
@@ -27,8 +27,6 @@ FactoryBot.define do
     end_date { "MyString" }
     interval_count { 1 }
     tax_exemption { "MyString" }
-    manual_renew { false }
-    site_id { "MyString" }
     company { nil }
   end
 end

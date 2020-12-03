@@ -6,7 +6,5 @@ class Subscription < ApplicationRecord
                           :list_price, :interval, :interval_length,
                           :next_charge_date
 
-  validates_inclusion_of  :manual_renew, in: [true, false]
-
   belongs_to :company
 end

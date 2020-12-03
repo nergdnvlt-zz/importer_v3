@@ -3,5 +3,5 @@ class Company < ApplicationRecord
 
   has_many :subscriptions
   has_many :american_subscriptions
-  has_many :false_subscriptions
+  has_many :invalid_subscriptions
 end

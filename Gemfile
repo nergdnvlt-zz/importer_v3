@@ -30,6 +30,9 @@ gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-r
 gem 'csv'
 
 
+gem 'rename'
+
+
 group :development, :test do
   gem 'active_designer'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

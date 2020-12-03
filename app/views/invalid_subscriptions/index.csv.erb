@@ -25,12 +25,10 @@
       'nextChargeDate',
       'endDate',
       'intervalCount',
-      'taxexemptionDate',
-      'manualRenew',
-      'siteId'
+      'taxexemptionDate'
     ] -%>
 <%= CSV.generate_line headers -%>
-<%- @company.false_subscriptions.each do |sub| -%>
+<%- @company.invalid_subscriptions.each do |sub| -%>
 <%= CSV.generate_line([
     sub.reference_id,
     sub.first,
@@ -58,6 +56,5 @@
     sub.next_charge_date,
     sub.end_date,
     sub.interval_count,
-    sub.tax_exemption,
-    sub.manual_renew]) -%>
+    sub.tax_exemption]) -%>
 <%- end -%>

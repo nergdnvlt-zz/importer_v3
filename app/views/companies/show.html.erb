@@ -9,8 +9,8 @@
 
 
 <h3>Invalid Subscriptions</h3>
-<% if !@company.false_subscriptions.empty? %>
-  <%= link_to 'See Invalid Subs', company_false_subscriptions_path(@company.name) %>
+<% if !@company.invalid_subscriptions.empty? %>
+  <%= link_to 'See Invalid Subs', company_invalid_subscriptions_path(@company.name) %>
 <% else %>
   <p>Currently No Invalid Subscriptions</p>
 <% end %>

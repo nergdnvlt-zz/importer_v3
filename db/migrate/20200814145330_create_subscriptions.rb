@@ -28,8 +28,6 @@ class CreateSubscriptions < ActiveRecord::Migration[6.0]
       t.datetime :end_date
       t.integer :interval_count
       t.string :tax_exemption
-      t.boolean :manual_renew
-      t.string :site_id
 
       t.timestamps
     end

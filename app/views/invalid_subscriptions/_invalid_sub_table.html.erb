@@ -28,9 +28,8 @@
       <th>endDate</th>
       <th>intervalCount</th>
       <th>taxExemptionData</th>
-      <th>manualRenew</th>
     </tr>
-    <% @company.false_subscriptions.each do |sub| %>
+    <% @company.invalid_subscriptions.each do |sub| %>
     <tr>
       <td><%= sub.reference_id %></td>
       <td><%= sub.first %></td>
@@ -59,7 +58,6 @@
       <td><%= sub.end_date if sub.end_date %></td>
       <td><%= sub.interval_count if sub.interval_count %></td>
       <td><%= sub.tax_exemption if sub.tax_exemption %></td>
-      <td><%= sub.manual_renew if sub.manual_renew %></td>
     </tr>
     <% end %>
   </table>
