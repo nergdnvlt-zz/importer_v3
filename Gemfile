@@ -28,6 +28,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faraday'
 gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails'
 gem 'csv'
+gem 'facets', require: false
 
 
 gem 'rename'

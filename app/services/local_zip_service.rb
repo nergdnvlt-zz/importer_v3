@@ -1,13 +1,5 @@
-class ZipService
+class LocalZipService
   attr_reader :zips
-
-  def real?(zip)
-    return true if @zips.include?(zip)
-
-    return true if ZipCodeService.run(zip)[0] == 200
-
-    false 
-  end
 
   def initialize
     @zips = import_all
