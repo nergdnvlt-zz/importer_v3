@@ -85,6 +85,7 @@ GEM
     database_cleaner (1.8.5)
     diff-lcs (1.4.4)
     erubi (1.9.0)
+    facets (3.1.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.1.0)
@@ -237,6 +238,7 @@ DEPENDENCIES
   capybara
   csv
   database_cleaner
+  facets
   factory_bot_rails
   faker
   faraday

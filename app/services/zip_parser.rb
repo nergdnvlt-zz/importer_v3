@@ -1,11 +1,14 @@
-class ZipParsingService
-  attr_reader :zip_code
+module ZipParser
 
-  def initialize(zip_code)
-    @zip_code = parse(zip_code)
+  def format_zips(subs)
+    subs.each do |sub|
+        sub[:postal_code] = parse_zip(sub[:postal_code])
+    end
   end
 
-  def parse(incoming_zip)
+
+  def parse_zip(incoming_zip)
+    # Remove after Roland
     return '93101' if incoming_zip.nil?
 
     if incoming_zip.length == 5

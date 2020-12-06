@@ -25,7 +25,7 @@
       'nextChargeDate',
       'endDate',
       'intervalCount',
-      'taxexemptionDate'
+      'taxExemptionData'
     ] -%>
 <%= CSV.generate_line headers -%>
 <%- @company.invalid_subscriptions.each do |sub| -%>

@@ -1,3 +1,5 @@
+require 'facets/string'
+
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show upload]
 
@@ -20,9 +22,8 @@ class CompaniesController < ApplicationController
   end
 
   def upload
-    read(params[:csv_file]).each do |sub|
-      SubCreationService.sub_eval_and_create(@company.id, sub)
-    end
+    UploadService.batch_upload(@company, read(params[:csv_file]))
+
     redirect_to "/#{@company.name}"
   end
 
@@ -37,6 +38,10 @@ class CompaniesController < ApplicationController
   end
 
   def read(filepath)
-    CSV.foreach(filepath, headers: :true, header_converters: :symbol).map{ |row| row }
+    CSV.foreach(
+      filepath, 
+      headers: :true, 
+      header_converters: lambda { |h| h.snakecase.to_sym })
+    .map{ |row| row.to_hash }
   end
 end
