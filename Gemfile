@@ -24,14 +24,12 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'activerecord-import', '~> 0.15.0'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'faraday'
-gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails'
 gem 'csv'
 gem 'facets', require: false
-
-
-gem 'rename'
+gem 'faraday'
+gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails'
 
 
 group :development, :test do

@@ -6,7 +6,7 @@ class UploadService
   include SubCreator
 
   def initialize(company, subs)
-    @company = company
+    @company_id = company.id
     @subs = subs
     @am_subs = []
     @invalid_subs = []
@@ -18,7 +18,10 @@ class UploadService
   end
 
   def batch_upload
-    # No Rejections
+    # Add Company ID as raw value
+    add_company_id
+
+    # For ROLAND No Rejections
     validate_product_paths
 
     #Validate Dates
@@ -30,14 +33,17 @@ class UploadService
     # Reject and put in invalid if zip doesnt match
     validate_us_sub_zips
 
-    binding.pry
+    save_am_subs if !@am_subs.empty?
 
-    save_am_subs
+    save_subs if !@subs.empty?
 
-    save_subs
+    save_invalid_subs if !@invalid_subs.empty?
+  end
 
-    save_invalid_subs
-    
+  def add_company_id
+    @subs.each do |sub|
+      sub[:company_id] = @company_id
+    end
   end
 
 

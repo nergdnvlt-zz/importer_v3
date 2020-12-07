@@ -1,8 +1,9 @@
 class SubscriptionsController < ApplicationController
   before_action :set_company, only: %i[index destroy]
+  before_action :set_subs, only: %i[index destroy]
   
   def index
-    @subs = @company.subscriptions
+    @subs
     respond_to do |format|
       format.html
       format.csv do
@@ -24,5 +25,9 @@ class SubscriptionsController < ApplicationController
 
   def set_company
     @company = Company.find_by(name: params[:company_id])
+  end
+
+  def set_subs
+    @subs ||= @company.subscriptions
   end
 end

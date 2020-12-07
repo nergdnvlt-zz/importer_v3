@@ -1,10 +1,18 @@
-<%= form_for @company do |f| %>
-  <h1>Company Info:</h1>
+<div class="outer-cont">
 
-  <div class='form_field'>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="content-cont">
+
+    <%= form_for @company do |f| %>
+      <h5>Add Company</h5>
+
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <%= f.submit 'Submit' %>
+    <% end %>
+
   </div>
 
-  <%= f.submit 'Submit' %>
-<% end %>
+</div>
