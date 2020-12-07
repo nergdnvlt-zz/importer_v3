@@ -1,10 +1,9 @@
 <%= form_for :company do |f| %>
-  <h1>Company Info:</h1>
+  <h5>Company</h5>
 
   <div class='form_field'>
-    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
-  <%= f.submit 'Submit' %>
+  <%= f.submit 'Log In' %>
 <% end %>

@@ -1,7 +1,11 @@
-<h1>Welcome</h1>
+<div class="outer-cont">
 
-<h3>Please Either Create a Company or Login</h3> 
+  <div class="content-cont">
 
-<%= button_to "Add Company", new_company_path, method: 'get' %>
+    <%= render partial: 'login' %> 
 
-<%= render partial: 'login' %>
+    <%= button_to "Add Company", new_company_path, method: 'get' %>
+
+  </div>
+
+</div>

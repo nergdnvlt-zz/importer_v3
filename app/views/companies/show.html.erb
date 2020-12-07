@@ -1,19 +1,28 @@
-<h1><%= @company.name %></h1>
+<div class="title">
+  <h1><%= @company.name %></h1>
+</div>
 
-<h3>Valid Subscriptions</h3>
-<% if !@company.subscriptions.empty? %>
-  <%= link_to 'See Valid Subs', company_subscriptions_path(@company.name) %>
-<% else %>
-  <p>Currently No Subscriptions</p>
-<% end %>
+<div class="outer-cont">
 
+  <div class="content-cont">
 
-<h3>Invalid Subscriptions</h3>
-<% if !@company.invalid_subscriptions.empty? %>
-  <%= link_to 'See Invalid Subs', company_invalid_subscriptions_path(@company.name) %>
-<% else %>
-  <p>Currently No Invalid Subscriptions</p>
-<% end %>
+    <div class='sub-access'>
+      <% if !@company.subscriptions.empty? %>
+        <h4><%= link_to 'Valid Subscriptions', company_subscriptions_path(@company.name) %></h4>
+      <% else %>
+        <h4>Valid Subscriptions</h4>
+      <% end %>
+    </div>
 
-
-<%= render partial: 'add_subs' %>
+    <div class='sub-access'>
+      <% if !@company.invalid_subscriptions.empty? %>
+        <h4><%= link_to 'Invalid Subscriptions', company_invalid_subscriptions_path(@company.name) %></h4>
+      <% else %>
+        <h4>Invalid Subscriptions</h4>
+      <% end %>
+    </div>
+  
+    <%= render partial: 'add_subs' %>
+  
+  </div>
+</div>
