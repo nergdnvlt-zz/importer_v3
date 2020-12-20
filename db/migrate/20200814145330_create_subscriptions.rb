@@ -27,7 +27,12 @@ class CreateSubscriptions < ActiveRecord::Migration[6.0]
       t.datetime :next_charge_date
       t.datetime :end_date
       t.integer :interval_count
+      t.string :coupon_code
+      t.string :discount_type
+      t.string :discount_value
+      t.string :discount_duration
       t.string :tax_exemption
+      t.string :manual_renew
 
       t.timestamps
     end

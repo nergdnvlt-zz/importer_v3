@@ -25,7 +25,12 @@
       'nextChargeDate',
       'endDate',
       'intervalCount',
-      'taxExemptionData'
+      'couponCode',
+      'discountType',
+      'discountValue',
+      'discountDuration',
+      'taxExemptionData',
+      'manualRenew'
     ] -%>
 <%= CSV.generate_line headers -%>
 <%- @company.subscriptions.each do |sub| -%>
@@ -56,5 +61,11 @@
     sub.next_charge_date,
     sub.end_date,
     sub.interval_count,
-    sub.tax_exemption]) -%>
+    sub.couponCode,
+    sub.discountType,
+    sub.discountValue,
+    sub.discountDuration,
+    sub.taxExemptionData,
+    sub.manualRenew
+    ]) -%>
 <%- end -%>
