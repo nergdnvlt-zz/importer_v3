@@ -10,7 +10,7 @@ module SubCreator
 
   def save_subs
     subs = @subs.map!{ |fields| Subscription.new(fields) }
-    results = Subscription.import(subs)
+    results = Subscription.import subs, validate: false
 
     if !results.failed_instances.empty?
       binding.pry
@@ -19,7 +19,7 @@ module SubCreator
 
   def save_invalid_subs
     subs = @invalid_subs.map!{ |fields| InvalidSubscription.new(fields) }
-    results = InvalidSubscription.import(subs)
+    results = InvalidSubscription.import subs, validate: false
 
     if !results.failed_instances.empty?
       binding.pry

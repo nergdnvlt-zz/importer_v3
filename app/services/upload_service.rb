@@ -1,6 +1,7 @@
 class UploadService
+  include BoolTool
+  include DateValidator
   include RolandProductPath
-  # include DateValidator
   include ZipParser
   include ZipValidator
   include SubCreator
@@ -24,8 +25,11 @@ class UploadService
     # For ROLAND No Rejections
     validate_product_paths
 
-    #Validate Dates
-    # validate_date_format
+    # Validate Dates
+    validate_date_format
+
+    #Convert booleans
+    convert_bools
 
     #Seperate US Subs
     separate_us_subs
