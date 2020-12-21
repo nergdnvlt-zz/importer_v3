@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_152231) do
     t.string "phone"
     t.string "language"
     t.string "country"
-    t.string "address_1"
-    t.string "address_2"
+    t.string "address_line1"
+    t.string "address_line2"
     t.string "city"
     t.string "region"
     t.string "postal_code"
@@ -48,7 +48,12 @@ ActiveRecord::Schema.define(version: 2020_09_09_152231) do
     t.string "next_charge_date"
     t.string "end_date"
     t.string "interval_count"
-    t.string "tax_exemption"
+    t.string "coupon_code"
+    t.string "discount_type"
+    t.string "discount_value"
+    t.string "discount_duration"
+    t.string "tax_exemption_data"
+    t.string "manual_renew"
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -64,8 +69,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_152231) do
     t.string "phone"
     t.string "language"
     t.string "country"
-    t.string "address_1"
-    t.string "address_2"
+    t.string "address_line1"
+    t.string "address_line2"
     t.string "city"
     t.string "region"
     t.string "postal_code"
@@ -86,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_152231) do
     t.string "discount_type"
     t.string "discount_value"
     t.string "discount_duration"
-    t.string "tax_exemption"
+    t.string "tax_exemption_data"
     t.string "manual_renew"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -1,268 +1,267 @@
 module CountryService
-  def countries
+  def validate_countries
+    @subs.select! do |sub| 
+      result = valid_country?(sub[:country])
+      @invalid_subs << sub if result == false
+      
+      sub if result == true
+    end
+  end
+
+  def valid_country?(country)
+    return false if country.nil?
+    
+    fs_countries.include?(country)
+  end
+
+  def fs_countries
     %w[
-      AF
-      AX
-      AL
-      DZ
-      AS
       AD
-      AO
-      AI
-      AQ
+      AE
+      AF
       AG
-      AR
+      AI
+      AL
       AM
-      AW
-      AU
+      AO
+      AQ
+      AR
+      AS
       AT
+      AU
+      AW
+      AX
       AZ
-      BS
-      BH
-      BD
+      BA
       BB
-      BY
+      BD
       BE
-      BZ
+      BF
+      BG
+      BH
+      BI
       BJ
+      BL
       BM
-      BT
-      BT
-      BO
+      BN
       BO
       BQ
-      BA
-      BW
-      BV
       BR
-      BN
-      BG
-      BF
-      BI
-      CV
-      KH
-      CM
+      BS
+      BT
+      BV
+      BW
+      BY
+      BZ
       CA
-      KY
-      TD
-      CL
-      CL
-      CN
-      CX
       CC
-      CO
-      CO
-      KM
       CG
-      CG
-      CK
-      CR
+      CH
       CI
-      HR
+      CK
+      CL
+      CM
+      CN
+      CO
+      CR
       CU
-      CU
+      CV
       CW
+      CX
       CY
       CZ
-      DK
+      DE
       DJ
+      DK
       DM
       DO
+      DZ
       EC
-      EG
-      SV
-      SV
-      GQ
-      ER
       EE
-      SZ
+      EG
+      EH
+      ER
+      ES
       ET
-      FK
-      FO
-      FJ
       FI
+      FJ
+      FK
+      FM
+      FO
       FR
-      GF
-      PF
-      TF
       GA
-      GM
+      GB
+      GD
       GE
-      DE
+      GF
+      GG
       GH
       GI
-      GR
       GL
-      GD
-      GP
-      GU
-      GT
-      GG
+      GM
       GN
+      GP
+      GQ
+      GR
+      GS
+      GT
+      GU
       GW
       GY
-      HT
-      HT
-      HM
-      VA
-      HN
       HK
+      HM
+      HN
+      HR
+      HT
       HU
-      IS
-      IN
       ID
-      IR
-      IQ
       IE
-      IM
       IL
+      IM
+      IN
+      IQ
+      IR
+      IS
       IT
-      JM
-      JP
       JE
+      JM
       JO
-      KZ
+      JP
       KE
+      KG
+      KH
       KI
-      NK
+      KM
+      KN
       KR
       KW
-      KG
+      KY
+      KZ
       LA
-      LV
       LB
-      LS
-      LS
-      LR
-      LY
+      LC
       LI
+      LK
+      LR
+      LS
+      LS
       LT
       LU
-      MO
-      MK
+      LV
+      LY
+      MA
+      MC
+      MD
+      ME
+      MF
       MG
-      MW
-      MY
-      MV
-      ML
-      MT
       MH
+      MK
+      ML
+      MM
+      MN
+      MO
+      MP
       MQ
       MR
-      MU
-      YT
-      MX
-      MX
-      FM
-      MD
-      MC
-      MN
-      ME
       MS
-      MA
+      MT
+      MU
+      MV
+      MW
+      MX
+      MY
       MZ
-      MM
       NA
-      NA
-      NR
-      NP
-      NL
       NC
-      NZ
-      NI
       NE
-      NG
-      NU
       NF
-      MP
+      NG
+      NI
+      NK
+      NL
       NO
+      NP
+      NR
+      NU
+      NZ
       OM
-      PK
-      PW
       PA
-      PA
-      PG
-      PY
       PE
+      PF
+      PG
       PH
-      PN
+      PK
       PL
-      PT
+      PM
+      PN
       PR
+      PT
+      PW
+      PY
       QA
       RE
       RO
+      RS
       RU
       RW
-      BL
-      SH
-      KN
-      LC
-      MF
-      PM
-      VC
-      WS
-      SM
-      ST
       SA
-      SN
-      RS
-      SC
-      SL
-      SG
-      SX
-      SK
-      SI
       SB
-      SO
-      ZA
-      GS
-      SS
-      ES
-      LK
+      SC
       SD
-      SR
-      SJ
       SE
-      CH
-      CH
-      CH
+      SG
+      SH
+      SI
+      SJ
+      SK
+      SL
+      SM
+      SN
+      SO
+      SR
+      SS
+      ST
+      SV
+      SX
       SY
-      TW
-      TJ
-      TZ
-      TH
-      TL
-      TG
-      TK
-      TO
-      TT
-      TN
-      TR
-      TM
+      SZ
       TC
+      TD
+      TF
+      TG
+      TH
+      TJ
+      TK
+      TL
+      TM
+      TN
+      TO
+      TR
+      TT
       TV
-      UG
+      TW
+      TZ
       UA
-      AE
-      GB
+      UG
       UM
       US
-      US
-      UY
-      UY
       UY
       UZ
-      VU
+      VA
+      VC
       VE
-      VN
       VG
       VI
+      VN
+      VU
       WF
-      EH
+      WS
       YE
+      YT
+      ZA
       ZM
       ZW
     ]
-
+  end
 end

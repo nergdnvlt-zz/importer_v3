@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'csv'
 gem 'facets', require: false
 gem 'faraday'
+gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails' 
 
 group :development, :test do
   gem 'active_designer'

@@ -1,7 +1,9 @@
 module RolandProductPath
   def validate_product_paths
     remove(@subs).each do |sub|
-      if !sub[:product_path].include?(':')
+      if sub[:product_path].include?('FS')
+        sub[:product_path] = sub[:product_path]
+      elsif !sub[:product_path].include?(':')
         sub[:product_path] = normalize(sub[:product_path])
       else 
         sub[:product_path] = normalize(sub[:product_path].split(":")[0])
@@ -12,6 +14,7 @@ module RolandProductPath
   def remove(subs)
     subs.select! do |sub| 
       @invalid_subs << sub if sub[:product_path].nil?
+
       sub if !sub[:product_path].nil?
     end
     @subs
