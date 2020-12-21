@@ -9,8 +9,8 @@ class CreateInvalidSubscriptions < ActiveRecord::Migration[6.0]
       t.string :phone
       t.string :language
       t.string :country
-      t.string :address_1
-      t.string :address_2
+      t.string :address_line1
+      t.string :address_line2
       t.string :city
       t.string :region
       t.string :postal_code
@@ -27,7 +27,12 @@ class CreateInvalidSubscriptions < ActiveRecord::Migration[6.0]
       t.string :next_charge_date
       t.string :end_date
       t.string :interval_count
-      t.string :tax_exemption
+      t.string :coupon_code
+      t.string :discount_type
+      t.string :discount_value
+      t.string :discount_duration
+      t.string :tax_exemption_data
+      t.string :manual_renew
       t.references :company, null: false, foreign_key: true
 
       t.timestamps
