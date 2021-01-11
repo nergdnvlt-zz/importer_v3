@@ -14,9 +14,6 @@ module UsZipService
   end
 
   def eval_zip(incoming_zip)
-    # Remove after Roland
-    return '93101' if incoming_zip.nil?
-
     if incoming_zip.length == 5
       return incoming_zip
     elsif incoming_zip.length == 3

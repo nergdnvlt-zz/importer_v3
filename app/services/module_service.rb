@@ -5,7 +5,6 @@ module ModuleService
   include DateValidator
   include FieldValidator
   include LanguageService
-  include RolandProductPath
   include SubCreator
   include UsZipService
 end

@@ -5,20 +5,9 @@ module DateValidator
     end
   end
 
-  # def correct_dates(sub)
-  #   date_fields(sub).each do |field|
-  #     if !sub[field].nil? && sub[field].include?('/')
-  #       sub[field] = eval_date(sub[field])
-  #     end
-  #   end
-  # end
-
-  # ROLAND RE IMPORT SPECIFIC
   def correct_dates(sub)
     date_fields(sub).each do |field|
-      if field == :next_charge_date
-        sub[field] = push_one_month(sub[field]).strftime("%Y-%m-%d")
-      elsif !sub[field].nil? && sub[field].include?('/')
+      if !sub[field].nil? && sub[field].include?('/')
         sub[field] = eval_date(sub[field])
       end
     end

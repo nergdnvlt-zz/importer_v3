@@ -3,11 +3,6 @@ module FieldValidator
     add_company_id
 
     convert_bools
-    
-    # _____________________________________
-    # For ROLAND No Rejections
-    validate_product_paths
-    # _____________________________________
 
     validate_countries
 
