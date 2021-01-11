@@ -2,7 +2,11 @@ module CountryService
   def validate_countries
     @subs.select! do |sub| 
       result = valid_country?(sub[:country])
-      @invalid_subs << sub if result == false
+      
+      if result == false
+        sub[:country] = "#{sub[:country]}-INVALID"
+        @invalid_subs << sub
+      end 
       
       sub if result == true
     end

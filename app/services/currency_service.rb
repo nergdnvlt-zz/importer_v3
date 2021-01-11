@@ -2,7 +2,10 @@ module CurrencyService
   def validate_currencies
     @subs.select! do |sub| 
       result = valid_currency?(sub[:currency])
-      @invalid_subs << sub if result == false
+      if result == false
+        sub[:currency] = "#{sub[:currency]}-INVALID"
+        @invalid_subs << sub
+      end 
       
       sub if result == true
     end
