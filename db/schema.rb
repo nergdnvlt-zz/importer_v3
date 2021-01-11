@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_152231) do
     t.string "city"
     t.string "region"
     t.string "postal_code"
-    t.string "live"
+    t.boolean "live"
     t.string "account_id"
     t.string "product_path"
     t.string "quantity"

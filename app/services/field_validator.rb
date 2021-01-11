@@ -1,6 +1,9 @@
 module FieldValidator
   def validate_sub_fields
     add_company_id
+
+    convert_bools
+    
     # _____________________________________
     # For ROLAND No Rejections
     validate_product_paths
@@ -13,8 +16,6 @@ module FieldValidator
     validate_currencies
 
     validate_date_format
-
-    convert_bools
 
     us_zips
   end

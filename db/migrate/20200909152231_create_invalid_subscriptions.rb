@@ -14,7 +14,7 @@ class CreateInvalidSubscriptions < ActiveRecord::Migration[6.0]
       t.string :city
       t.string :region
       t.string :postal_code
-      t.string :live
+      t.boolean :live
       t.string :account_id
       t.string :product_path
       t.string :quantity

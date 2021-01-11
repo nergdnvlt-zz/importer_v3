@@ -17,7 +17,6 @@ module LanguageService
   def fs_languages
     %w[
       AR
-      CN
       DA
       DE
       EN
@@ -32,6 +31,7 @@ module LanguageService
       PT
       RU
       SV
+      ZH
     ]
   end
 end
