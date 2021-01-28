@@ -25,30 +25,30 @@
       </tr>
     </thead>
     <tbody>
-      <% @company.subscriptions.each do |sub| %>
-      <tr>
-        <td><%= sub.reference_id %></td>
-        <td><%= sub.first %></td>
-        <td><%= sub.last %></td>
-        <td><%= sub.email %></td>
-        <td><%= sub.language %></td>
-        <td><%= sub.country %></td>
-        <td><%= sub.region if sub.region %></td>
-        <td><%= sub.postal_code if sub.postal_code %></td>
-        <td><%= sub.live %></td>
-        <td><%= sub.product_path %></td>
-        <td><%= sub.quantity %></td>
-        <td><%= sub.currency %></td>
-        <td><%= sub.list_price %></td>
-        <td><%= sub.interval %></td>
-        <td><%= sub.interval_length %></td>
-        <td><%= sub.begin_date if sub.begin_date %></td>
-        <td><%= sub.trial_end_date if sub.trial_end_date %></td>
-        <td><%= sub.next_charge_date %></td>
-        <td><%= sub.end_date if sub.end_date %></td>
-        <td><%= sub.interval_count if sub.interval_count %></td>
-      </tr>
-      <% end %>
+        <% sample(@company).each do |sub| %>
+        <tr>
+          <td><%= sub.reference_id %></td>
+          <td><%= sub.first %></td>
+          <td><%= sub.last %></td>
+          <td><%= sub.email %></td>
+          <td><%= sub.language %></td>
+          <td><%= sub.country %></td>
+          <td><%= sub.region if sub.region %></td>
+          <td><%= sub.postal_code if sub.postal_code %></td>
+          <td><%= sub.live %></td>
+          <td><%= sub.product_path %></td>
+          <td><%= sub.quantity %></td>
+          <td><%= sub.currency %></td>
+          <td><%= sub.list_price %></td>
+          <td><%= sub.interval %></td>
+          <td><%= sub.interval_length %></td>
+          <td><%= sub.begin_date if sub.begin_date %></td>
+          <td><%= sub.trial_end_date if sub.trial_end_date %></td>
+          <td><%= sub.next_charge_date %></td>
+          <td><%= sub.end_date if sub.end_date %></td>
+          <td><%= sub.interval_count if sub.interval_count %></td>
+        </tr>
+        <% end %>
     </tbody>
   </table>
 </div>

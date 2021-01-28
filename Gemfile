@@ -27,9 +27,12 @@ gem 'jbuilder', '~> 2.7'
 gem 'activerecord-import', '~> 0.15.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'csv'
+gem 'devise'
 gem 'facets', require: false
 gem 'faraday'
-gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails' 
+gem 'jquery-rails'
+gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails'
+gem 'toastr-rails'
 
 group :development, :test do
   gem 'active_designer'

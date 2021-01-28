@@ -1,5 +1,5 @@
 <div class="title">
-  <h1><%= @company.name %></h1>
+  <h1><%= @corp.company.name %></h1>
 </div>
 
 <div class="outer-cont">
@@ -7,18 +7,28 @@
   <div class="content-cont">
 
     <div class='sub-access'>
-      <% if !@company.subscriptions.empty? %>
-        <h4><%= link_to 'Valid Subscriptions', company_subscriptions_path(@company.name) %></h4>
+      <% if !@corp.subs.empty? %>
+        <h4><%= link_to "Valid Subscriptions - #{@corp.subs.count}", company_subscriptions_path(@corp.company.name) %></h4>
+        <div>
+          <%= button_to "Download", company_subscriptions_path(@corp.company.name, format: "csv"), method: 'get' %>
+
+          <%= button_to "Delete All", delete_all_company_subscriptions_path(@corp.company.name, ), method: :delete, data: { confirm: "Are you sure?" } %>
+        </div> 
       <% else %>
-        <h4>Valid Subscriptions</h4>
+        <h4>Valid Subscriptions - 0</h4>
       <% end %>
     </div>
 
     <div class='sub-access'>
-      <% if !@company.invalid_subscriptions.empty? %>
-        <h4><%= link_to 'Invalid Subscriptions', company_invalid_subscriptions_path(@company.name) %></h4>
+      <% if !@corp.invalid_subs.empty? %>
+        <h4><%= link_to "Invalid Subscriptions - #{@corp.invalid_subs.count}", company_invalid_subscriptions_path(@corp.company.name) %></h4>
+        <div>
+          <%= button_to "Download", company_invalid_subscriptions_path(@corp.company.name, format: "csv"), method: 'get' %>
+
+          <%= button_to "Delete All", delete_all_company_invalid_subscriptions_path(@corp.company.name), method: :delete, data: { confirm: "Are you sure?" } %>
+        </div> 
       <% else %>
-        <h4>Invalid Subscriptions</h4>
+        <h4>Invalid Subscriptions - 0</h4>
       <% end %>
     </div>
   
