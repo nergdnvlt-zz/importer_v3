@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @company.invalid_subscriptions.each do |sub| %>
+      <% invalid_sample(@company).each do |sub| %>
       <tr>
         <td><%= sub.reference_id %></td>
         <td><%= sub.first %></td>

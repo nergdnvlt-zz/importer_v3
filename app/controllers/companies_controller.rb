@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company
+    @corp = CompanyPresenter.new(@company)
   end
 
   def upload
