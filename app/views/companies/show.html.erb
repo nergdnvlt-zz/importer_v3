@@ -15,7 +15,7 @@
           <%= button_to "Delete All", delete_all_company_subscriptions_path(@corp.company.name, ), method: :delete, data: { confirm: "Are you sure?" } %>
         </div> 
       <% else %>
-        <h4>Valid Subscriptions - 0</h4>
+        <h4>Valid Subscriptions</h4>
       <% end %>
     </div>
 
@@ -28,7 +28,7 @@
           <%= button_to "Delete All", delete_all_company_invalid_subscriptions_path(@corp.company.name), method: :delete, data: { confirm: "Are you sure?" } %>
         </div> 
       <% else %>
-        <h4>Invalid Subscriptions - 0</h4>
+        <h4>Invalid Subscriptions</h4>
       <% end %>
     </div>
   

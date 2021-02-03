@@ -1,4 +1,4 @@
-module SubCreator
+module SubCreatorService
   def save_am_subs
     subs = @am_subs.map!{ |fields| AmericanSubscription.new(fields) }
     results = AmericanSubscription.import subs, validate: false

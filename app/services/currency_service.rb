@@ -1,20 +1,14 @@
 module CurrencyService
-  def validate_currencies
-    @subs.select! do |sub| 
-      result = valid_currency?(sub[:currency])
-      if result == false
-        sub[:currency] = "#{sub[:currency]}-INVALID"
-        @invalid_subs << sub
-      end 
-      
-      sub if result == true
-    end
-  end
+  def validate_fs_currency(currency)
+    return 'INVALID' if currency.nil?
 
-  def valid_currency?(currency)
-    return false if currency.nil?
+    currency = currency.upcase
     
-    fs_currencies.include?(currency)
+    if fs_currencies.include?(currency) == false
+      return "#{currency}-INVALID"
+    end
+    
+    currency
   end
 
   def fs_currencies

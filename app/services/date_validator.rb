@@ -1,28 +1,48 @@
 module DateValidator
-  def validate_date_format
-    @subs.each do |sub| 
-      correct_dates(sub)
+  def validate_optional_date(date)
+    return nil if date.nil?
+
+    if date.include?('/')
+      date = eval_date(date)
     end
+
+    begin
+      new_date = Date.strptime(date, "%Y-%m-%d")
+    rescue Date::Error
+      date = "#{date}-INVALID"
+    end
+
+    date
   end
 
-  def correct_dates(sub)
-    date_fields(sub).each do |field|
-      if !sub[field].nil? && sub[field].include?('/')
-        sub[field] = eval_date(sub[field])
-      end
+  def validate_required_date(date)
+    return "INVALID" if date.nil?
+
+    if date.include?('/')
+      date = eval_date(date)
     end
+
+    begin
+      new_date = Date.strptime(date, "%Y-%m-%d")
+    rescue Date::Error
+      date = "#{date}-INVALID"
+    end
+    
+    date
   end
 
-  def push_one_month(date)
-    Date.strptime(date, "%Y-%m-%d") + 1.month
+  def eval_sub_next_charge(next_charge, end_date)
+    date = validate_required_date(next_charge)
+
+    if end_date
+      date = (Date.strptime(date, "%Y-%m-%d") + 1.day).strftime("%Y-%m-%d")
+    end
+    
+    date
   end
 
   def eval_date(date)
     "#{year(date)}-#{month(date)}-#{day(date)}"
-  end
-
-  def date_fields(sub)
-    sub.keys.select{ |key| key if key.match?("date") }
   end
 
   def year(date)
