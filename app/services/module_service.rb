@@ -1,10 +1,11 @@
 module ModuleService
-  include BoolTool
   include CountryService
   include CurrencyService
   include DateValidator
-  include FieldValidator
+  include DataTypeService
+  include DiscountService
+  include IntervalService
   include LanguageService
-  include SubCreator
+  include UsStateService
   include UsZipService
 end

@@ -1,21 +1,15 @@
 module UsZipService
-  def us_zips
-    format_zips
+  def validate_us_postal_code(country, postal_code)
+    if country == 'US'
+      return "INVALID" if postal_code.nil?
 
-    validate_zips
-  end
-
-  def format_zips
-    @subs.each do |sub|
-      if sub[:country] == 'US'
-        sub[:postal_code] = eval_zip(sub[:postal_code])
-      end
+      postal_code = validate_zip(eval_zip(postal_code))
     end
+
+    postal_code
   end
 
   def eval_zip(incoming_zip)
-    return "INVALID" if incoming_zip.nil?
-
     if incoming_zip.length == 5
       return incoming_zip
     elsif incoming_zip.length == 3
@@ -35,18 +29,16 @@ module UsZipService
     end
   end
 
-  def validate_zips
-    @subs.select! do |sub|
-      result = real_zip?(sub[:country], sub[:postal_code])
-      @invalid_subs << sub if result == false
-      
-      sub if result == true
+  def validate_zip(postal_code)
+    if real_zip?(postal_code) == false
+      return "#{postal_code}-INVALID"
     end
+
+    postal_code
   end
 
-  def real_zip?(country, zip)
-    return true if country != 'US'
-    return true if @zips.include?(zip)
+  def real_zip?(postal_code)
+    return true if @zips.include?(postal_code)
 
     false 
   end

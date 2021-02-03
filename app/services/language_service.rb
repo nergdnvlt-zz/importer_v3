@@ -1,20 +1,14 @@
 module LanguageService
-  def validate_languages
-    @subs.select! do |sub| 
-      result = valid_language?(sub[:language])
-      if result == false
-        sub[:language] = "#{sub[:language]}-INVALID"
-        @invalid_subs << sub
-      end
-      
-      sub if result == true
-    end
-  end
+  def validate_language(language)
+    return 'INVALID' if language.nil?
 
-  def valid_language?(language)
-    return false if language.nil?
+    language = language.upcase
     
-    fs_languages.include?(language)
+    if fs_languages.include?(language) == false
+      return  "#{language}-INVALID"
+    end
+
+    language
   end
 
   def fs_languages

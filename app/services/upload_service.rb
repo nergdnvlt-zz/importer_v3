@@ -1,22 +1,39 @@
 class UploadService
-  include ModuleService
+  include SubCreatorService
 
   def initialize(company, subs)
-    @company_id = company.id
-    @subs = subs
-    @invalid_subs = []
     @zips = LocalZipService.new.zips
+    @company_id = company.id
+    @subs = validate_subs(subs)
+    @invalid_subs = []
+    seperate_subs()
+    remove_seperator()
   end
 
   def self.batch_upload(company, subs)
-    new(company, subs).validate_and_batch_upload
+    new(company, subs).batch_upload
   end
 
-  def validate_and_batch_upload
-    add_company_id
+  def seperate_subs
+    @subs.delete_if do |sub|
+      if sub[:invalid] == true
+        @invalid_subs << sub
+      end
+      sub[:invalid] == true 
+    end
+  end
 
-    validate_sub_fields
+  def remove_seperator
+    @invalid_subs.each { |sub| sub.delete(:invalid)}
+  end
 
+  def validate_subs(subs)
+    subs.each do |sub|
+      SubService.validate(@company_id, sub, @zips)
+    end
+  end
+
+  def batch_upload
     save_subs if !@subs.empty?
 
     save_invalid_subs if !@invalid_subs.empty?

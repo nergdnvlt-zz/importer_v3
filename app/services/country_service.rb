@@ -1,21 +1,14 @@
 module CountryService
-  def validate_countries
-    @subs.select! do |sub| 
-      result = valid_country?(sub[:country])
-      
-      if result == false
-        sub[:country] = "#{sub[:country]}-INVALID"
-        @invalid_subs << sub
-      end 
-      
-      sub if result == true
-    end
-  end
+  def validate_fs_country(country)
+    return "INVALID" if country.nil?
 
-  def valid_country?(country)
-    return false if country.nil?
-    
-    fs_countries.include?(country)
+    country = country.upcase
+
+    if fs_countries.include?(country) == false
+      country = "#{country}-INVALID"
+    end
+
+    country
   end
 
   def fs_countries
