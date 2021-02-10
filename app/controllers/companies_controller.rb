@@ -41,6 +41,7 @@ class CompaniesController < ApplicationController
     CSV.foreach(
       filepath, 
       headers: :true, 
+      force_quotes: true,
       header_converters: lambda { |h| h.snakecase.to_sym })
     .map{ |row| row.to_hash }
   end
