@@ -25,63 +25,8 @@ html {
   font-family: 'Raleway', sans-serif !important;
 }
 
-table {
-  display: grid;
-  border-collapse: collapse;
-  min-width: 100%;
-  grid-template-columns: 
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(150px, 1.67fr)
-    minmax(250px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(100px, 1.67fr)
-    minmax(150px, 1.67fr)
-    minmax(150px, 1.67fr)
-    minmax(150px, 1.67fr)
-    minmax(150px, 1.67fr)
-    minmax(100px, 1.67fr);
-  width: 100% !important;
-  height: 100%;
-  padding: 0;
-  -webkit-box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
-  -moz-box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
-  box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
-  border-radius: 8px;
-}
-
-thead, tbody, tr {
-  display: contents;
-}
-
-th, td {
-  padding-left: 15px !important;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-th {
-  position: sticky;
-  top: 50px !important;
-  background: #6c7ae0;
-  text-align: left;
-  font-weight: normal;
-  font-size: 1.1rem;
-  color: white;
-}
-
-tr:nth-child(even) td {
-  background: #f8f6ff;
+.admin {
+  margin-right: 20px;
 }
 
 .content-cont {
@@ -91,6 +36,10 @@ tr:nth-child(even) td {
   -moz-box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
   box-shadow: 4px 3px 29px -5px rgba(0,0,0,0.75);
   border-radius: 8px;
+}
+
+.controller-and-action {
+  margin-left: 20px;
 }
 
 .csv-upload {
@@ -121,7 +70,7 @@ tr:nth-child(even) td {
 
 /* Change background on mouse-over */
 .navbar a:hover {
-cursor: pointer;
+  cursor: pointer;
 }
 
 .outer-cont {
@@ -132,15 +81,13 @@ cursor: pointer;
   width: 100%;
 }
 
+/* .page-header {
+  margin-top: 5%;
+} */
+
 .sub-access {
   margin-top: 5%;
   margin-bottom: 10%;
-}
-
-.table-cont {
-  width: 100%;
-  display: table;
-  margin-top: 50px;
 }
 
 .title-logo {
@@ -148,10 +95,9 @@ cursor: pointer;
   height: 25px;
 }
 
-.admin {
-  margin-right: 20px;
-}
-
-.controller-and-action {
-  margin-left: 20px;
+.title-header-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
 }

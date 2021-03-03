@@ -42,43 +42,43 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     # add_index :users, :unlock_token,         unique: true
 
     User.create! do |u|
-      u.email = "tlundgren@fastspring.com"
-      u.password = "Password,1"
-    end
-    
-    User.create! do |u|
-      u.email = "jtewes@fastspring.com"
-      u.password = "Password,1"
-    end
-    
-    User.create! do |u|
-      u.email = "jtrujillo@fastspring.com"
-      u.password = "Password,1"
-    end
-    
-    User.create! do |u|
-      u.email = "aharvey@fastspring.com"
-      u.password = "Password,1"
+      u.email = 'tlundgren@fastspring.com'
+      u.password = 'Password,1'
     end
 
     User.create! do |u|
-      u.email = "elongva@fastspring.com"
-      u.password = "Password,1"
+      u.email = 'jtewes@fastspring.com'
+      u.password = 'Password,1'
     end
 
     User.create! do |u|
-      u.email = "acohen@fastspring.com"
-      u.password = "Password,1"
+      u.email = 'jtrujillo@fastspring.com'
+      u.password = 'Password,1'
     end
 
     User.create! do |u|
-      u.email = "cbrown@fastspring.com"
-      u.password = "Password,1"
+      u.email = 'aharvey@fastspring.com'
+      u.password = 'Password,1'
     end
 
     User.create! do |u|
-      u.email = "smanna@fastspring.com"
-      u.password = "Password,1"
+      u.email = 'elongva@fastspring.com'
+      u.password = 'Password,1'
+    end
+
+    User.create! do |u|
+      u.email = 'acohen@fastspring.com'
+      u.password = 'Password,1'
+    end
+
+    User.create! do |u|
+      u.email = 'cbrown@fastspring.com'
+      u.password = 'Password,1'
+    end
+
+    User.create! do |u|
+      u.email = 'smanna@fastspring.com'
+      u.password = 'Password,1'
     end
   end
 end

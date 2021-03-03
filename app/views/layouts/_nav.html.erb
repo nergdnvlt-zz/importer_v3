@@ -1,19 +1,21 @@
 <div class="navbar">
   <div class="controller-and-action">
     <% if controller_name == 'pages' && action_name == 'welcome' %>
-      &nbsp;
+
+    <% elsif controller_name == 'companies' && action_name == 'show' && user_signed_in? %>
+      <%= link_to "All Companies", companies_path %>
     <% elsif controller_name == 'subscriptions' && action_name == 'index'%>
       <%= link_to "Download", company_subscriptions_path(format: "csv"), method: 'get' %>
 
       <%= link_to "Delete All", delete_all_company_subscriptions_path, method: :delete, data: { confirm: "Are you sure?" } %>
-    
+
     <% elsif controller_name == 'invalid_subscriptions' && action_name == 'index'%>
       <%= link_to "Download", company_invalid_subscriptions_path(format: "csv"), method: 'get' %>
 
       <%= link_to "Delete All", delete_all_company_invalid_subscriptions_path, method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
   </div>
-  
+
   <div>
     <%= link_to image_tag('fastspring.png', class: "title-logo"), root_path %>
   </div>
@@ -22,6 +24,11 @@
     <% if (controller_name == 'subscriptions' && action_name == 'index') || (controller_name == 'invalid_subscriptions' && action_name == 'index') %>
       <%= link_to @company.name, company_path(@company.name) %>
     <% end %>
-    <a href="#">Admin</a>
+
+    <% if user_signed_in? %>
+      <%= link_to 'Admin Log Out', destroy_user_session_path, method: 'delete' %>
+    <% else %>
+      <%= link_to 'Admin', new_user_session_path %>
+    <% end %>
   </div>
 </div>

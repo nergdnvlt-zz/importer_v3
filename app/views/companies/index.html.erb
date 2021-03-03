@@ -1,0 +1,31 @@
+<div class="title-header-cont">
+  <h1 class="page-header">
+    Admin Company Management
+  </h1>
+</div>
+
+<div class="outer-cont">
+
+  <div class="content-cont">
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Sub Count</th>
+      <th>Invalid Count</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @companies.each do |company| %>
+    <tr>
+      <td><%= link_to company.name, company_path(company.name) %></td>
+      <td><%= company.subscriptions.count %></td>
+      <td><%= company.invalid_subscriptions.count %></td>
+      <td><%= link_to 'Delete', company_path(company.name), method: 'delete' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
