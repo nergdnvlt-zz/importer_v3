@@ -1,7 +1,7 @@
 <div class="table-cont">
-  <table>
-    <thead>
-      <tr>
+  <table class="sub-table">
+    <thead class="sub-table-thead">
+      <tr  class="sub-table-tr">
         <th>referenceId</th>
         <th>first</th>
         <th>last</th>
@@ -24,9 +24,9 @@
         <th>intervalCount</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="sub-table-body">
         <% sample(@company).each do |sub| %>
-        <tr>
+        <tr class="sub-table-tr">
           <td><%= sub.reference_id %></td>
           <td><%= sub.first %></td>
           <td><%= sub.last %></td>

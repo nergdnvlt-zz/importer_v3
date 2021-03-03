@@ -1,5 +1,7 @@
-<div class="title">
-  <h1><%= @corp.company.name %></h1>
+<div class="title-header-cont">
+  <h1 class="page-header">
+    <%= @corp.company.name %>
+  </h1>
 </div>
 
 <div class="outer-cont">
@@ -13,7 +15,7 @@
           <%= button_to "Download", company_subscriptions_path(@corp.company.name, format: "csv"), method: 'get' %>
 
           <%= button_to "Delete All", delete_all_company_subscriptions_path(@corp.company.name, ), method: :delete, data: { confirm: "Are you sure?" } %>
-        </div> 
+        </div>
       <% else %>
         <h4>Valid Subscriptions</h4>
       <% end %>
@@ -26,13 +28,13 @@
           <%= button_to "Download", company_invalid_subscriptions_path(@corp.company.name, format: "csv"), method: 'get' %>
 
           <%= button_to "Delete All", delete_all_company_invalid_subscriptions_path(@corp.company.name), method: :delete, data: { confirm: "Are you sure?" } %>
-        </div> 
+        </div>
       <% else %>
         <h4>Invalid Subscriptions</h4>
       <% end %>
     </div>
-  
+
     <%= render partial: 'add_subs' %>
-  
+
   </div>
 </div>

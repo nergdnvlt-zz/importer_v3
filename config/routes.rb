@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: 'pages#welcome'
 
   resources :companies do
-    resources :subscriptions
+    # resources :subscriptions
     post 'subscriptions/download', to: 'subscriptions#download'
     resources :subscriptions do
       collection do
@@ -11,8 +12,7 @@ Rails.application.routes.draw do
       end
     end
 
-
-    resources :invalid_subscriptions
+    # resources :invalid_subscriptions
     post 'invalid_subscriptions/download', to: 'invalid_subscriptions#download'
     resources :invalid_subscriptions do
       collection do
@@ -23,7 +23,6 @@ Rails.application.routes.draw do
 
   get '/:company', to: 'companies#show'
   post 'companies/upload', to: 'companies#upload'
-  # delete '/company/:company/subscriptions', to: 'subscriptions#destroy'
 
   post '/', to: 'sessions#create'
 end

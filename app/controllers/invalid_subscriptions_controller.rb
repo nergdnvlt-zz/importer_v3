@@ -1,6 +1,6 @@
 class InvalidSubscriptionsController < ApplicationController
   before_action :set_company, only: %i[index destroy]
-  
+
   def index
     @subs = @company.invalid_subscriptions
     respond_to do |format|
@@ -11,7 +11,7 @@ class InvalidSubscriptionsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     if @company.invalid_subscriptions.destroy_all
       redirect_to company_path(@company)

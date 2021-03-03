@@ -1,7 +1,8 @@
 require 'facets/string'
 
 class CompaniesController < ApplicationController
-  before_action :set_company, only: %i[show upload]
+  before_action :set_company, only: %i[show upload destroy]
+  before_action :authenticate_user!, only: %i[index]
 
   def new
     @company = Company.new
@@ -10,9 +11,10 @@ class CompaniesController < ApplicationController
   def create
     company = Company.new(company_params)
     if company.save
-      session[:company_id] = company.id
+      flash[:notice] = "#{company.name} created"
       redirect_to "/#{company.name}"
     else
+      flash[:notice] = "#Company not created"
       redirect_to new_company_path
     end
   end
@@ -27,6 +29,20 @@ class CompaniesController < ApplicationController
     redirect_to "/#{@company.name}"
   end
 
+  def index
+    @companies = Company.all
+  end
+
+  def destroy
+    name = @company.name
+    if @company.delete
+      flash[:notice] = "#{name} deleted"
+    else
+      flash[:notice] = "#{@company.name} not deleted"
+    end
+    redirect_to companies_path
+  end
+
   private
 
   def company_params
@@ -34,15 +50,19 @@ class CompaniesController < ApplicationController
   end
 
   def set_company
-    @company = Company.find(session[:company_id]) || @company = Company.find_by(name: params[:company])
+    if params[:company]
+      @company = Company.find_by(name: params[:company])
+    else
+      @company = Company.find_by(name: params[:id])
+    end
   end
 
   def read(filepath)
     CSV.foreach(
-      filepath, 
-      headers: :true, 
+      filepath,
+      headers: true,
       force_quotes: true,
-      header_converters: lambda { |h| h.snakecase.to_sym })
-    .map{ |row| row.to_hash }
+      header_converters: ->(h) { h.snakecase.to_sym }
+    ).map{ |row| row.to_hash }
   end
 end
